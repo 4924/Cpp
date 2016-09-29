@@ -1,8 +1,5 @@
 #include "WPILib.h"
 
-
-#include "WPILib.h"
-
 class Robot: public IterativeRobot
 {
 private:
@@ -72,5 +69,8 @@ private:
 };
 
 START_ROBOT_CLASS(Robot)
+
+
+
 
 
