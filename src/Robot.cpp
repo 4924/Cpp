@@ -4,56 +4,94 @@ class Robot: public IterativeRobot
 {
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
-	SendableChooser *chooser;
-	const std::string autoNameDefault = "Default";
-	const std::string autoNameCustom = "My Auto";
-	std::string autoSelected;
-	RobotDrive robot = RobotDrive(0, 1);
-	Joystick stick = Joystick(0);
+	
+	RobotDrive robot;
+	Joystick stick;
+
+	//CAMERA
+	Servo camX;
+	double camdY;
+	Servo camY;
+	double camdX;
+	//CAMERA
+
+	//Toggle Control
+	 //arm
+	 //starts down
+	 boolean arm_bool = true;
+
+	 //finger
+	 //starts in
+	 boolean finger_bool = true;
+
+	 //comp
+	 //starts running
+	 boolean comp_bool = true;
+
+	 //launcher
+	 //true is down (once again only a toggle value)
+	 boolean launcher_bool = true;
+	 //we only really need a toggle value to control a solenoid because of blank.set(!blanck.get())
+	 //the reason all the others have location values is because of the anti-bummper-quick-release
+	 //seems to me now that those are not even necessary
+	 //Toggle Control
+
+	 //Pneumatics
+	 Compressor comp;
+	 DoubleSolenoid sol1;
+	 DoubleSolenoid sol2;
+	 //Pneumatics
+
+	 //Launcher
+	 //Launcher status
+	 int intake_num = 0;
+	 //Launcher motors
+	 CANTalon motor1;
+	 CANTalon motor2;
+	 //Intake motor
+	 CANTalon motor3;
+	 //Launcher
+
 
 	void RobotInit()
 	{
-		chooser = new SendableChooser();
-		chooser->AddDefault(autoNameDefault, (void*)&autoNameDefault);
-		chooser->AddObject(autoNameCustom, (void*)&autoNameCustom);
-		SmartDashboard::PutData("Auto Modes", chooser);
+		robot = RobotDrive(0, 1);
+		sitck = Joystick(0);
 		robot.SetExpiration(0.1);
+		comp = Compressor();
+		comp.start();
+
+		//Solenoids
+		//0
+		sol1 = DoubleSolenoid(0,1);
+		//3
+    sol2 = DoubleSolenoid(2,3);
+
+		sol1.set(DoubleSolenoid.Value.kForward);
+		slo2.set(DoubleSolenoid.Value.kReverse);
+		//Solenoids
+
+		//Camera
+		camY = Servo(4);
+		camX = Servo(3);
+		//Camera
 	}
 
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-	 * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-	 * Dashboard, remove all of the chooser code and uncomment the GetString line to get the auto name from the text box
-	 * below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional comparisons to the if-else structure below with additional strings.
-	 * If using the SendableChooser make sure to add them to the chooser code above as well.
-	 */
+
 	void AutonomousInit()
 	{
-		autoSelected = *((std::string*)chooser->GetSelected());
-		//std::string autoSelected = SmartDashboard::GetString("Auto Selector", autoNameDefault);
-		std::cout << "Auto selected: " << autoSelected << std::endl;
 
-		if(autoSelected == autoNameCustom){
-			//Custom Auto goes here
-		} else {
-			//Default Auto goes here
-		}
 	}
 
 	void AutonomousPeriodic()
 	{
-		if(autoSelected == autoNameCustom){
-			//Custom Auto goes here
-		} else {
-			//Default Auto goes here
-		}
+
 	}
 
 	void TeleopInit()
 	{
+
 
 	}
 
@@ -69,8 +107,3 @@ private:
 };
 
 START_ROBOT_CLASS(Robot)
-
-
-
-
-
