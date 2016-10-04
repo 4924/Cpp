@@ -65,7 +65,7 @@ private:
 		//0
 		sol1 = DoubleSolenoid(0,1);
 		//3
-    sol2 = DoubleSolenoid(2,3);
+		sol2 = DoubleSolenoid(2,3);
 
 		sol1.set(DoubleSolenoid.Value.kForward);
 		slo2.set(DoubleSolenoid.Value.kReverse);
@@ -101,11 +101,11 @@ private:
 
 		if(stick.GetRawButton(2)&&arm_bool){
 			if(sol1.Get()==DoubleSolenoid.Value.kForward){
-				sol1.Set(DoubleSolenoid.Value.kReverse)
+				sol1.Set(DoubleSolenoid.Value.kReverse);
 			} else {
-				sol1.Set(DoubleSolenoid.Value.kForward)
+				sol1.Set(DoubleSolenoid.Value.kForward);
 			}
-			arm_bool=false
+			arm_bool=false;
 		} else if (stick.GetRawButton(2)&&arm_bool==false) {
 				/* Zilch */
 		} else if (arm_bool==false){
