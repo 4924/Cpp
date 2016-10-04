@@ -4,7 +4,7 @@ class Robot: public IterativeRobot
 {
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
-	
+
 	RobotDrive robot;
 	Joystick stick;
 
@@ -98,6 +98,19 @@ private:
 	void TeleopPeriodic()
 	{
 		robot.ArcadeDrive(stick.GetY(), -stick.GetX());
+
+		if(stick.GetRawButton(2)&&arm_bool){
+			if(sol1.Get()==DoubleSolenoid.Value.kForward){
+				sol1.Set(DoubleSolenoid.Value.kReverse)
+			} else {
+				sol1.Set(DoubleSolenoid.Value.kForward)
+			}
+			arm_bool=false
+		} else if (stick.GetRawButton(2)&&arm_bool==false) {
+				/* Zilch */
+		} else if (arm_bool==false){
+		  	arm_bool=true;
+		}
 	}
 
 	void TestPeriodic()
