@@ -111,6 +111,22 @@ private:
 		} else if (arm_bool==false){
 		  	arm_bool=true;
 		}
+
+		//SHOOTER SOLENOID CONTROL
+		if(stick.GetRawButton(4)&&launcher_bool) {
+			 launcher_bool=false;
+			if(sol1.Get()==DoubleSolenoid.Value.kForward){
+				sol2.Set(DoubleSolenoid.Value.kReverse);
+			} else {
+				sol2.Set(DoubleSolenoid.Value.kForward);
+			}
+
+		} else if(stick.GetRawButton(4)&&!launcher_bool)  {
+
+		} else if(!launcher_bool) {
+			launcher_bool = !launcher_bool;
+		}
+
 	}
 
 	void TestPeriodic()
