@@ -1,2 +1,2 @@
 language: cpp
-script: g++ Robot.cpp
+script: make
