@@ -1,2 +1,2 @@
 language: cpp
-script: g++ /src/Robot.cpp
+script: g++ Robot.cpp
