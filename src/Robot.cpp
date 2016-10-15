@@ -9,7 +9,7 @@ private:
 	Joystick stick;
 
 	//CAMERA
-	Servo camX;
+	Servo camX;=error +lolz
 	double camdY;
 	Servo camY;
 	double camdX;
