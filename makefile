@@ -1,2 +1,2 @@
-a.o: /src/Robot.cpp 
+a.out: /src/Robot.cpp 
   g++ /src/Robot.cpp  
