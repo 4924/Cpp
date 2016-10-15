@@ -1,2 +1,2 @@
-g++ /src/Robot.cpp  
-  
+a.o: /src/Robot.cpp 
+  g++ /src/Robot.cpp  
