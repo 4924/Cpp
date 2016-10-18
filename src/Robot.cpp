@@ -7,9 +7,10 @@ private:
 
 	RobotDrive robot;
 	Joystick stick;
+	DigitalInput blt;
 
 	//CAMERA
-	Servo camX;=error +lolz
+	Servo camX;
 	double camdY;
 	Servo camY;
 	double camdX;
@@ -58,6 +59,7 @@ private:
 		robot = RobotDrive(0, 1);
 		sitck = Joystick(0);
 		robot.SetExpiration(0.1);
+		blt = DigitalInput(3);
 		comp = Compressor();
 		comp.start();
 
